@@ -1,9 +1,19 @@
 <div class="container mx-auto">
   <h1 class="my-8 text-[#060C1B] text-3xl font-bold">Submissions</h1>
   <div class="flex items-center flex-wrap gap-10 mb-8">
-    <app-input [type]="'text'" [placeholder]="'Seach'"></app-input>
-    <app-select [options]="fromData"></app-select>
-    <app-select [options]="statusData"></app-select>
+    <app-input
+      [type]="'text'"
+      (searchVal)="emitSerchVal($event)"
+      [placeholder]="'Seach'"
+    ></app-input>
+    <app-select
+      [options]="fromData"
+      (changeSelect)="selectFrom($event)"
+    ></app-select>
+    <app-select
+      [options]="statusData"
+      (changeSelect)="selectStatus($event)"
+    ></app-select>
     <app-date-picker></app-date-picker>
     <div class="ml-auto">
       <button
@@ -50,10 +60,11 @@
     >
       <app-card [data]="submissionList"></app-card>
     </div>
-    <div class="w-2/3">
+    <div class="w-2/3 min-h-[calc(100vh_-_300px)]">
       <google-map height="100%" width="100%" [center]="center" [zoom]="zoom">
         <map-marker
           *ngFor="let markerPosition of markerPositions"
+          icon="/assets/images/icons/mapMarker.svg"
           [position]="markerPosition"
           [options]="markerOptions"
         ></map-marker>

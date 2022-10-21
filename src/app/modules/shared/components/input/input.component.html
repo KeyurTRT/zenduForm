@@ -1,1 +1,6 @@
-<input class="px-4 py-3 text-[#060C1B] border border-[#B8B9BC] rounded w-[335px] search-input focus:outline-none" [type]="type" [placeholder]="placeholder" />
+<input
+  class="px-4 py-3 text-[#060C1B] border border-[#B8B9BC] rounded w-[335px] search-input focus:outline-none"
+  [type]="type"
+  [placeholder]="placeholder"
+  (keyup)="getSearch($event)"
+/>
