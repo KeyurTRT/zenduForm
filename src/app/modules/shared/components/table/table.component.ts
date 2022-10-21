@@ -6,9 +6,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() data!: any;
+  @Input() submissionList: any[] = [];
   @Input() selectedRows: any[] = [];
-  @Output() checked = new EventEmitter<any>();
+  @Output() checkboxChangeEmit = new EventEmitter<any>();
 
   constructor() {}
 
@@ -16,6 +16,6 @@ export class TableComponent implements OnInit {
   }
 
   onCheckbox(id: any,event : any) {
-    this.checked.emit({id : id, isChecked : event?.target.checked});
+    this.checkboxChangeEmit.emit({id : id, isChecked : event?.target.checked});
   }
 }

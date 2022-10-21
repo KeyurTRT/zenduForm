@@ -39,9 +39,9 @@
 
   <div *ngIf="isViewList === 'list'">
     <app-table
-      [data]="submissionList"
+      [submissionList]="submissionList"
       [selectedRows]="selectedRow"
-      (checked)="onChangeCheckBox($event)"
+      (checkboxChangeEmit)="onChangeCheckBox($event)"
     ></app-table>
   </div>
   <div class="flex gap-5" *ngIf="isViewList === 'map'">

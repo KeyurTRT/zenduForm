@@ -3,7 +3,7 @@
     <tr class="border-b border-[#ECECED]">
       <th class="p-4 text-base text-[#060C1B] font-bold text-left">
         <label class="custom-check">
-          <input type="checkbox" [checked]="selectedRows.length === data.length ? 'checked' : ''" (change)="onCheckbox('All',$event)" />
+          <input type="checkbox" [checked]="selectedRows.length === submissionList.length ? 'checked' : ''" (change)="onCheckbox('All',$event)" />
           <span class="checkmark"></span>
         </label>
       </th>
@@ -20,7 +20,7 @@
   <tbody>
     <tr
       class="border-b border-[#ECECED] hover:bg-[#F1F5F8] last:border-b-0"
-      *ngFor="let item of data"
+      *ngFor="let item of submissionList"
     >
       <td class="py-2 px-4 text-base font-normal text-[#060C1B]">
         <label class="custom-check">

@@ -14,7 +14,7 @@ export class SubmissionsComponent implements OnInit {
   public fromData = JSON_DATA.fromData;
   public headers = JSON_DATA.headers;
   public statusData: string[] = ['Select Status'];
-  public selectedRow: string[] = [];
+  public selectedRow: any[] = [];
 
   // Start Goole map //
   center: google.maps.LatLngLiteral = {
@@ -38,10 +38,7 @@ export class SubmissionsComponent implements OnInit {
   constructor(private sharedService: GlobalService) {}
 
   ngOnInit(): void {
-    this.submissionList.forEach((item: any) => {
-      this.statusData.push(item.status);
-      item['selected'] = false;
-    });
+    this.statusData = this.submissionList.map((item: any) => item.status);
     this.statusData = [...new Set(this.statusData)];
   }
 
@@ -69,10 +66,9 @@ export class SubmissionsComponent implements OnInit {
       }
     }
 
-    let csvData: any = [];
+    let csvData: Array<any> = [];
     for (let i = 0; i < this.submissionList.length; i++) {
       if (this.selectedRow.includes(this.submissionList[i].id)) {
-        delete this.submissionList[i].selected;
         csvData.push(this.submissionList[i]);
       }
     }
