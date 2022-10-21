@@ -26,7 +26,9 @@ export class SubmissionsComponent implements OnInit {
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
   };
-  markerPositions: google.maps.LatLngLiteral[] = this.submissionList.map((item: any) => item.latLong);
+  markerPositions: google.maps.LatLngLiteral[] = this.submissionList.map(
+    (item: any) => item.latLong
+  );
   // [
   //   { lat: 18.59803808918268, lng: 8.352539062499996 },
   //   { lat: 27.17030840339055, lng: 6.506835937499997 },
@@ -50,9 +52,7 @@ export class SubmissionsComponent implements OnInit {
     // console.log(this.latLong);
   }
 
-  initMap() {
-
-  }
+  initMap() {}
 
   selectView(view: string) {
     if (view === 'map') {
@@ -123,5 +123,23 @@ export class SubmissionsComponent implements OnInit {
     } else {
       this.submissionList = JSON_DATA.submissionsList;
     }
+  }
+
+  formatDate(date: any) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [month, day].join('-');
+  }
+
+  dateSelect(date: any) {
+    let selectedDate = this.formatDate(date);
+    this.submissionList = JSON_DATA.submissionsList.filter((item: any) => {
+      return selectedDate == this.formatDate(item.due_date);
+    });
   }
 }
